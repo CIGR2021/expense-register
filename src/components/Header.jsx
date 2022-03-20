@@ -1,5 +1,5 @@
-import React from "react";
-import { connect } from "react-redux";
+import React from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 function Header(props) {
@@ -14,32 +14,28 @@ function Header(props) {
     arrayconver.push(real);
 
     return arrayconver;
-  })
+  });
 
-  const total = arrayconver
-    .reduce((acc, num) => acc + parseFloat(num), 0);
-  
+  const total = arrayconver.reduce((acc, num) => acc + parseFloat(num), 0);
+
   return (
     <header>
       <h1>Expense Register</h1>
-      <h4>{ email }</h4>
-      <h4>
-        Total de despesas:
-        {' '}
-        { total.tofixed(2) }
-      </h4>
+      <h4>{email}</h4>
+      <h4>Total de despesas: {total.tofixed(2)}</h4>
       <h4>BRL</h4>
     </header>
-  )
+  );
 }
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   email: state.user.email,
-  expensesLabel: state.wallet.expenses
+  expensesLabel: state.wallet.expenses,
 });
 
-Header.propTypes = ({
-  email: PropTypes.string.isRequired
-});
+Header.propTypes = {
+  email: PropTypes.string.isRequired,
+  expensesLabel: PropTypes.string.isRequired,
+};
 
 export default connect(mapStateToProps)(Header);
