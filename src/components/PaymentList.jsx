@@ -27,7 +27,7 @@ function PaymentList(props) {
     <table>
       {structure()}
       <tbody>
-        {expensesLabel.map((item, index) => {
+        {expensesLabel.map((item) => {
           const exchange = item.exchangeRates[item.currency];
           const name = exchange.name.split('/')[0];
           const currency = exchange.ask;
@@ -35,7 +35,7 @@ function PaymentList(props) {
           const real = parseFloat(item.value * currency).toFixed(2);
 
           return (
-            <tr key={index}>
+            <tr key={name}>
               <td>{item.description}</td>
               <td>{item.tag}</td>
               <td>{item.method}</td>
@@ -44,7 +44,7 @@ function PaymentList(props) {
               <td>{real}</td>
               <td>Real</td>
               <td>
-                <button>Deletar</button>
+                <button type='button'>Deletar</button>
               </td>
             </tr>
           );

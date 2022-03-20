@@ -25,7 +25,7 @@ function Form(props) {
 
   useEffect(() => {
     currencies();
-  }, [currencies]);
+  });
 
   const validateType = ({ target: { name, value } }) => {
     setState({ [name]: value });
