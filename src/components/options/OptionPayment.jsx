@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 function OptionPayment() {
   return (
@@ -8,7 +8,7 @@ function OptionPayment() {
       <option>Cartão de crédito</option>
       <option>Cartão de débito</option>
     </>
-  )
+  );
 }
 
 export default OptionPayment;

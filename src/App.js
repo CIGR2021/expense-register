@@ -1,8 +1,13 @@
-import React from "react";
+import React from 'react';
+import { Route, Switch } from 'react-router';
+import { Login, Wallet } from './pages';
 
 function App() {
   return (
-    <main>App Teste</main>
+    <Switch>
+      <Route exact path="/carteira" component={ Wallet } />
+      <Route exact path="/" component={ Login } />
+    </Switch>
   );
 }
 
