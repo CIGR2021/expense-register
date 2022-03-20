@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -20,48 +20,46 @@ function PaymentList(props) {
           <th>Editar/Excluir</th>
         </tr>
       </thead>
-    )
-  }
+    );
+  };
 
   return (
     <table>
-      { structure() }
+      {structure()}
       <tbody>
-        {
-          expensesLabel.map((item, index) => {
-            const exchange = item.exchangeRates[item.currency];
-            const name = exchange.name.split('/')[0];
-            const currency = exchange.ask;
-            const value = parseFloat(currency).toFixed(2);
-            const real = parseFloat(item.value * currency).toFixed(2);
+        {expensesLabel.map((item, index) => {
+          const exchange = item.exchangeRates[item.currency];
+          const name = exchange.name.split('/')[0];
+          const currency = exchange.ask;
+          const value = parseFloat(currency).toFixed(2);
+          const real = parseFloat(item.value * currency).toFixed(2);
 
-            return (
-              <tr key={ index }>
-                <td>{ item.description }</td>
-                <td>{ item.tag }</td>
-                <td>{ item.method }</td>
-                <td>{ item.value }</td>
-                <td>{ name }</td>
-                <td>{ real }</td>
-                <td>Real</td>
-                <td>
-                  <button>Deletar</button>
-                </td>
-              </tr>
-            );
-          })
-        }
+          return (
+            <tr key={index}>
+              <td>{item.description}</td>
+              <td>{item.tag}</td>
+              <td>{item.method}</td>
+              <td>{value}</td>
+              <td>{name}</td>
+              <td>{real}</td>
+              <td>Real</td>
+              <td>
+                <button>Deletar</button>
+              </td>
+            </tr>
+          );
+        })}
       </tbody>
     </table>
   );
 }
 
-const mapStateToProps = state => ({
-  expensesLabel: state.wallet.expenses
+const mapStateToProps = (state) => ({
+  expensesLabel: state.wallet.expenses,
 });
 
-PaymentList.propTypes = ({
-  expensesLabel: PropTypes.shape.isRequired
-});
+PaymentList.propTypes = {
+  expensesLabel: PropTypes.shape.isRequired,
+};
 
 export default connect(mapStateToProps)(PaymentList);
