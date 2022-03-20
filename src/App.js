@@ -1,6 +1,7 @@
 import React from 'react';
 import { Route, Switch } from 'react-router';
-import { Login, Wallet } from './pages';
+import Login from './pages/Login.jsx';
+import Wallet from './pages/Wallet.jsx';
 
 function App() {
   return (
