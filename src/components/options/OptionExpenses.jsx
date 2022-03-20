@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 function OptionExpenses() {
   return (
@@ -10,7 +10,7 @@ function OptionExpenses() {
       <option>Transporte</option>
       <option>Saúde</option>
     </>
-  )
+  );
 }
 
 export default OptionExpenses;
