@@ -3,7 +3,7 @@ import React from 'react';
 function OptionExpenses() {
   return (
     <>
-      <option selected>-</option>
+      <option defaultValue>-</option>
       <option>Alimentação</option>
       <option>Lazer</option>
       <option>Trabalho</option>

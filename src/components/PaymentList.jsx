@@ -1,11 +1,15 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-function PaymentList(props) {
-  const { expensesLabel } = props;
+class PaymentList extends Component {
+  constructor(props) {
+    super(props);
 
-  const structure = () => {
+    this.structure = this.structure.bind(this);
+  }
+
+  structure = () => {
     return (
       <thead>
         <tr>
@@ -23,35 +27,40 @@ function PaymentList(props) {
     );
   };
 
-  return (
-    <table>
-      {structure()}
-      <tbody>
-        {expensesLabel.map((item) => {
-          const exchange = item.exchangeRates[item.currency];
-          const name = exchange.name.split('/')[0];
-          const currency = exchange.ask;
-          const value = parseFloat(currency).toFixed(2);
-          const real = parseFloat(item.value * currency).toFixed(2);
-
-          return (
-            <tr key={name}>
-              <td>{item.description}</td>
-              <td>{item.tag}</td>
-              <td>{item.method}</td>
-              <td>{value}</td>
-              <td>{name}</td>
-              <td>{real}</td>
-              <td>Real</td>
-              <td>
-                <button type='button'>Deletar</button>
-              </td>
-            </tr>
-          );
-        })}
-      </tbody>
-    </table>
-  );
+  render() {
+    const { expensesLabel } = this.props;
+    return (
+      <table>
+        {this.structure()}
+        <tbody>
+          {expensesLabel.map((item) => {
+            const exchange = item.exchangeRates[item.currency];
+            const name = exchange.name.split('/')[0];
+            const currency = exchange.ask;
+            const value = parseFloat(currency).toFixed(2);
+            const real = parseFloat(item.value * currency).toFixed(2);
+            return (
+              <tr key={name}>
+                <td>{item.description}</td>
+                <td>{item.tag}</td>
+                <td>{item.method}</td>
+                <td>{item.value}</td>
+                <td>{name}</td>
+                <td>{value}</td>
+                <td>{real}</td>
+                <td>Real</td>
+                <td>
+                  <button data-testid='delete-btn' type='button'>
+                    Deletar
+                  </button>
+                </td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    );
+  }
 }
 
 const mapStateToProps = (state) => ({
@@ -59,7 +68,7 @@ const mapStateToProps = (state) => ({
 });
 
 PaymentList.propTypes = {
-  expensesLabel: PropTypes.shape.isRequired,
-};
+  expensesLabel: PropTypes.shape,
+}.isRequired;
 
 export default connect(mapStateToProps)(PaymentList);
